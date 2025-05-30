@@ -19,7 +19,27 @@ Resources:
                 IndexDocument: index.html
             BucketName: yitza-resume-app
 
-    PublicBucketPolicy:
+    MyDistribution:
+        Type: "AWS::CloudFront::Distribution"
+        Properties:
+            DistributionConfig:
+                DefaultCacheBehavior:
+                    ViewerProtocolPolicy: redirect-to-https
+                    TargetOriginId: yitza-resume-app.s3-website-us-east-1.amazonaws.com
+                    DefaultTTL: 0
+                    MinTTL: 0
+                    MaxTTL: 0
+                    ForwardedValues:
+                        QueryString: false
+                Origins:
+                  - DomainName: yitza-resume-app.s3-website-us-east-1.amazonaws.com
+                    Id: yitza-resume-app.s3-website-us-east-1.amazonaws.com
+                    CustomOriginConfig:
+                        OriginProtocolPolicy: http-only
+                Enabled: "true"
+                DefaultRootObject: index.html
+
+    PublicBucketPolicyv2:
         Type: AWS::S3::BucketPolicy
         Properties:
             Bucket: !Ref MyWebsite
