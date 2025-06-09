@@ -1,0 +1,154 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    resume-app
+
+    Powertools example
+
+Globals: # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy-globals.html
+    Function:
+        Timeout: 5
+        MemorySize: 128
+        Runtime: python3.11
+
+Resources:
+    MyWebsite:
+        Type: AWS::S3::Bucket
+        Properties:
+            WebsiteConfiguration:
+                IndexDocument: index.html
+            BucketName: yitza-resume-app
+
+    DynamoDBTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+            TableName: cloud-resume-challenge
+            BillingMode: PAY_PER_REQUEST
+            AttributeDefinitions:
+              - AttributeName: "ID"
+                AttributeType: "S"
+            KeySchema:
+              - AttributeName: "ID"
+                KeyType: "HASH"
+
+    MyRoute53Record:
+        Type: "AWS::Route53::RecordSetGroup"
+        Properties:
+            HostedZoneId: Z082975629LS39M9H06KO # Don't hardcode me
+            RecordSets:
+              - Name: mycv01yitza-resume-challenge.com #Don't hardcode me
+                Type: A
+                AliasTarget:
+                    HostedZoneId: Z2FDTNDATAQYW2
+                    DNSName: !GetAtt MyDistribution.DomainName
+    
+    MyDistribution:
+        Type: "AWS::CloudFront::Distribution"
+        Properties:
+            DistributionConfig:
+                DefaultCacheBehavior:
+                    ViewerProtocolPolicy: redirect-to-https
+                    TargetOriginId: yitza-resume-app.s3-website-us-east-1.amazonaws.com
+                    DefaultTTL: 0
+                    MinTTL: 0
+                    MaxTTL: 0
+                    ForwardedValues:
+                        QueryString: false
+                Origins:
+                  - DomainName: yitza-resume-app.s3-website-us-east-1.amazonaws.com
+                    Id: yitza-resume-app.s3-website-us-east-1.amazonaws.com
+                    CustomOriginConfig:
+                        OriginProtocolPolicy: http-only
+                Enabled: "true"
+                DefaultRootObject: index.html
+
+    PublicBucketPolicyv2:
+        Type: AWS::S3::BucketPolicy
+        Properties:
+            Bucket: !Ref MyWebsite
+            PolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                  - Sid: PublicReadGetObject
+                    Effect: Allow
+                    Principal: "*"
+                    Action: s3:GetObject
+                    Resource: !Sub "arn:aws:s3:::${MyWebsite}/*"
+
+    GetFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+        Properties:
+            Handler: app.lambda_handler
+            CodeUri: get-function/
+            Timeout: 20
+            Description: Get Function
+            Architectures:
+                - x86_64
+            Tracing: Active
+            Events:
+                HelloPath:
+                    Type: Api # More info about API Event Source: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-function-api.html
+                    Properties:
+                        Path: /get
+                        Method: GET
+            Policies:
+              - DynamoDBReadPolicy:
+                TableName: cloud-resume-challenge
+             # Powertools env vars: https://awslabs.github.io/aws-lambda-powertools-python/#environment-variables
+            Environment:
+                Variables:
+                    POWERTOOLS_SERVICE_NAME: PowertoolsHelloWorld
+                    POWERTOOLS_METRICS_NAMESPACE: Powertools
+                    LOG_LEVEL: INFO
+            Tags:
+                LambdaPowertools: python
+
+    PutFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+        Properties:
+            Handler: app.lambda_handler
+            CodeUri: put-function/
+            Timeout: 20
+            Description: Put Function
+            Architectures:
+                - x86_64
+            Tracing: Active
+            Events:
+                HelloPath:
+                    Type: Api # More info about API Event Source: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-function-api.html
+                    Properties:
+                        Path: /put
+                        Method: POST
+            # Powertools env vars: https://awslabs.github.io/aws-lambda-powertools-python/#environment-variables
+            Policies:
+              - Version: "2012-10-17"
+                Statement:
+                  - Effect: Allow
+                    Action:
+                      - dynamodb:UpdateItem
+                    Resource: arn:aws:dynamodb:us-east-1:904233091249:table/cloud-resume-challenge
+            Environment:
+                Variables:
+                    POWERTOOLS_SERVICE_NAME: PowertoolsHelloWorld
+                    POWERTOOLS_METRICS_NAMESPACE: Powertools
+                    LOG_LEVEL: INFO
+            Tags:
+                LambdaPowertools: python
+
+Outputs:
+    GetApiEndpoint:
+        Description: "API Gateway endpoint URL for the GetFunction"
+        Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/get"
+
+    PutApiEndpoint:
+        Description: "API Gateway endpoint URL for the PutFunction"
+        Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/put"
+
+    GetFunctionArn:
+        Description: "ARN of the Get Lambda Function"
+        Value: !GetAtt GetFunction.Arn
+
+    PutFunctionArn:
+        Description: "ARN of the Put Lambda Function"
+        Value: !GetAtt PutFunction.Arn
+

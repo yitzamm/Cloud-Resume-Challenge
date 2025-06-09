@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume - Yitza Marin</title>
+  <script>
+    fetch('https://2vc19emnea.execute-api.us-east-1.amazonaws.com/Prod/put', {
+      method: 'POST'
+    })
+    .then(() => fetch('https://2vc19emnea.execute-api.us-east-1.amazonaws.com/Prod/get'))
+    .then(response => response.json())
+    .then((data) => {
+      document.getElementById('replaceme').innerText = data.count;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  </script>
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <p>
+    Visitors:
+      <span id="replaceme" \>
+  </p>
+
+  <header>
+    <h1>Yitza Marin</h1>
+    <div class="contact-info">
+      sidsyh@gmail.com | +506 72701321 | LinkedIn: https://www.linkedin.com/in/yitza-mar%C3%ADn-maga%C3%B1a-65b2291ba/ | GitHub: https://github.com/yitzamm
+    </div>
+  </header>
+
+  <section>
+    <h2>Professional Summary</h2>
+    <p>Detail-oriented software engineer with about 3 years of experience in web development, cloud architecture, and automation. Skilled in AWS, Cisco, Python, Linux and DevOps practices, eager to contribute to innovative projects.</p>
+  </section>
+
+  <section>
+    <h2>Work Experience</h2>
+    <ul>
+      <li>
+        <div class="job-title">Customer Service and Sales Representative</div>
+        <div class="company">Sykes - San Pedro, Costa Rica</div>
+        <div class="date">Jan 2019 - Mar 2021</div>
+        <p>Offer phone support to address different questions, concerns and problems (account maintenance, billing, disputes, etc.), but also sell a variety of products and services to new and existing customers.</p>
+      </li>
+      <li>
+        <div class="job-title">Advisor Email Support</div>
+        <div class="company">Concentrix - Pavas, Costa Rica</div>
+        <div class="date">Jun 2021 - Oct 2021</div>
+        <p>Provide offline support and comprehensive product/service information to employers by building new relationships and maintaining the existing ones (platform navigation, billing, sales, account recoveries).</p>
+      </li>
+      <li>
+        <div class="job-title">Sr Quality Evaluator</div>
+        <div class="company">Concentrix - Pavas, Costa Rica</div>
+        <div class="date">Oct 2021 - May 2022</div>
+        <p>Perform QA evaluations, provide coaching, conduct internal and external calibrations, keep track of CSATs, monitor compliance, and send daily/weekly/monthly reports.</p>
+      </li>
+      <li>
+        <div class="job-title">Advanced Tech Support Specialist</div>
+        <div class="company">DXC Technology - Lagunilla, Costa Rica</div>
+        <div class="date">May 2022 - Set 2022</div>
+        <p>Help users troubleshoot advanced equipment issues, maintain records of customer interactions and collaborate with others to improve the company's system requirements.</p>
+      </li>
+      <li>
+        <div class="job-title">IT Ops/Support Analyst II</div>
+        <div class="company">DXC Technology - WFH</div>
+        <div class="date">Set 2022 – Present</div>
+        <p>Collaborated in agile teams to build customer-facing features. Assisted in migrating legacy systems to cloud infrastructure.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <ul>
+      <li>
+        <div class="job-title">Cisco CCNAv7 Curriculum Completed</div>
+        <div class="company">Cisco Networking Academy</div>
+        <div class="date">Issued on 2021</div>
+      </li>
+      <li>
+        <div class="job-title">AWS Certified Cloud Practitioner</div>
+        <div class="company">Amazon Academy</div>
+        <div class="date">Issued on 2024</div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Certifications</h2>
+    <ul>
+      <li>
+        <div class="job-title">International Baccalaureate</div>
+        <div class="company">Liceo de Moravia</div>
+        <div class="date">2017 - 2018</div>
+      </li>
+      <li>
+        <div class="job-title">System Engineering Bachelor's Degree</div>
+        <div class="company">Universidad Americana</div>
+        <div class="date">Expected Graduation 2027</div>
+      </li>
+      <li>
+        <div class="job-title">AWS Cloud Computing Specialty</div>
+        <div class="company">Universidad Castro Carazo</div>
+        <div class="date">Expected Graduation 2025</div>
+      </li>
+      <li>
+        <div class="job-title">DevOps Professional Certification</div>
+        <div class="company">Universidad Creativa</div>
+        <div class="date">Expected Graduation 2026</div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <span class="skill">AWS - </span>
+      <span class="skill">JavaScript - </span>
+      <span class="skill">Python - </span>
+      <span class="skill">Docker - </span>
+      <span class="skill">Kubernetes - </span>
+      <span class="skill">Terraform - </span>
+      <span class="skill">React - </span>
+      <span class="skill">Linux</span>
+    </div>
+  </section>
+
+</body>
+</html>

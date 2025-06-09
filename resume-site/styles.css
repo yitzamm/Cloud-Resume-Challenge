@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  h1 {
+    margin-bottom: 0;
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    color: #007acc;
+  }
+  
+  .contact-info {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    color: #555;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  .job-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #222;
+  }
+  
+  .company,
+  .date {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .skill {
+    background: #007acc;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+  }
+  
+  @media (max-width: 600px) {
+    body {
+      padding: 10px;
+    }
+  }
