@@ -20,3 +20,7 @@ invoke-put:
 
 invoke-get:
 	sam build; aws-vault exec yitza --no-session -- sam local invoke GetFunction
+
+commit:
+	git commit -m "Update files"
+	git push

@@ -1,0 +1,38 @@
+name: Run app.py in CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  build-infra:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install and run get-function/app.py
+        run: |
+          cd resume-app/get-function
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python app.py
+
+      - name: Install and run put-function/app.py
+        run: |
+          cd resume-app/put-function
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python app.py
