@@ -93,7 +93,7 @@ Resources:
                         Method: GET
             Policies:
               - DynamoDBReadPolicy:
-                TableName: cloud-resume-challenge
+                    TableName: cloud-resume-challenge
              # Powertools env vars: https://awslabs.github.io/aws-lambda-powertools-python/#environment-variables
             Environment:
                 Variables:
