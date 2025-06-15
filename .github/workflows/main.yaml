@@ -26,14 +26,14 @@ jobs:
 
       - name: Install and run get-function/app.py
         run: |
-          cd resume-app/get-function
+          cd get-function
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           python app.py
 
       - name: Install and run put-function/app.py
         run: |
-          cd resume-app/put-function
+          cd put-function
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           python app.py
