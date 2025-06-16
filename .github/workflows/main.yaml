@@ -66,8 +66,7 @@ jobs:
 
       - name: SAM Build
         run: sam build
-        working-directory: cloud-resume-challenge
 
       - name: SAM Deploy
         run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
-        working-directory: cloud-resume-challenge
+
