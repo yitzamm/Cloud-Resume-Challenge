@@ -3,8 +3,8 @@ June 16, 2025
 
 I'm taking on the Cloud Resume Challenge, using AWS to build a fully automated, serverless resume site. This project sharpens my skills in cloud architecture, infrastructure as code, CI/CD, and monitoring while showcasing my ability to integrate scalable AWS solutions.
 
-Link to the dev challenge: https://cloudresumechallenge.dev/
-Link to my website: https://mycv01yitza-resume-challenge.com/
+- Link to the dev challenge: https://cloudresumechallenge.dev/
+- Link to my website: https://mycv01yitza-resume-challenge.com/
 
 ## Architecture Diagram
 
