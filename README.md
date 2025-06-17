@@ -22,7 +22,7 @@ Link to the dev challenge: https://cloudresumechallenge.dev/
 - IaC - The DynamoDB table, API Gateway and Lambda function should be defined in a SAM or Terraform template.
 - GitHub Repo for the back-end code (CI/CD).
 - CI/CD Back-end via GitHub actions - Pushing updates to the Python code should get the tests to run. If the test passes, the SAM/Terraform application will get packaged and deployed.
-- CI/CD Front-end via a second GitHub repo - Pushing new website code should get the S3 bucket updated. CloudFront cache should be invalidated for this step.
+- CI/CD Front-end - Pushing new website code should get the S3 bucket updated. CloudFront cache should be invalidated for this step.
 - NOTE: AWS credentials must not be committed to source control.
 - Blog post - Final testing and documentation.
 
