@@ -26,4 +26,4 @@ Link to the dev challenge: https://cloudresumechallenge.dev/
 - NOTE: AWS credentials must not be committed to source control.
 - Blog post - Final testing and documentation.
 
-Step-by-step project summary: https://drive.google.com/file/d/15bihRgbjwJ7gOwyHrcavxLwxeTvpc1lZ/view?usp=sharing
+Step-by-step project summary: https://drive.google.com/file/d/15bihRgbjwJ7gOwyHrcavxLwxeTvpc1lZ/view
