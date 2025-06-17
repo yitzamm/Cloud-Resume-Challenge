@@ -7,7 +7,7 @@ Link to the dev challenge: https://cloudresumechallenge.dev/
 
 ## Architecture Diagram
 
-
+![Image](https://github.com/user-attachments/assets/e0c0a45b-e1be-4598-aab8-ddb732be0603)
 
 ## Tools, Services and Integration
 
